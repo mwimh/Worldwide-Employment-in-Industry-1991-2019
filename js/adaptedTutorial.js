@@ -1,12 +1,9 @@
 var map = L.map('map').setView([42.00, -103.00], 5);
 
-var CartoDB_VoyagerLabelsUnder = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 20
+var tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
-
 
 var myLines = [{
     "type": "LineString",
@@ -21,12 +18,10 @@ var myStyle = {
     "weight": 5,
     "opacity": 0.65
 };
-
+ 
 L.geoJSON(myLines, {
     style: myStyle
 }).addTo(map);
-
-
 
 var states = [{
     "type": "Feature",
@@ -65,8 +60,6 @@ L.geoJSON(states, {
     }
 }).addTo(map);
 
-
-
 var geojsonMarkerOptions = {
     radius: 8,
     fillColor: "#ff7800",
@@ -75,7 +68,6 @@ var geojsonMarkerOptions = {
     opacity: 1,
     fillOpacity: 0.8
 };
-
 
 function onEachFeature(feature, layer) {
     if (feature.properties && feature.properties.popupContent) {
@@ -106,7 +98,6 @@ L.geoJSON(geojsonFeature, {
     }
 }).addTo(map);
 
-/*
 var someFeatures = [{
     "type": "Feature",
     "properties": {
@@ -128,7 +119,6 @@ var someFeatures = [{
         "coordinates": [-104.98404, 39.74621]
     }
 }];
-*/
 
 L.geoJSON(someFeatures, {
     filter: function (feature, layer) {

@@ -1,12 +1,11 @@
+// methods described in quickstartTutorial.js
 var map = L.map('map').setView([42.00, -103.00], 5);
 
-
+// methods described in quickstartTutorial.js
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
-
 
 var myLines = [{
     "type": "LineString",
@@ -22,28 +21,27 @@ var myStyle = {
     "opacity": 0.65
 };
 
+// .geoJSON: displays specified GeoJSON objects on the map 
 L.geoJSON(myLines, {
     style: myStyle
 }).addTo(map);
 
-
-
 var states = [{
     "type": "Feature",
-    "properties": {"party": "Republican"},
+    "properties": { "party": "Republican" },
     "geometry": {
         "type": "Polygon",
         "coordinates": [[
             [-104.05, 48.99],
-            [-97.22,  48.98],
-            [-96.58,  45.94],
+            [-97.22, 48.98],
+            [-96.58, 45.94],
             [-104.03, 45.94],
             [-104.05, 48.99]
         ]]
     }
 }, {
     "type": "Feature",
-    "properties": {"party": "Democrat"},
+    "properties": { "party": "Democrat" },
     "geometry": {
         "type": "Polygon",
         "coordinates": [[
@@ -57,15 +55,13 @@ var states = [{
 }];
 
 L.geoJSON(states, {
-    style: function(feature) {
+    style: function (feature) {
         switch (feature.properties.party) {
-            case 'Republican': return {color: "#ff0000"};
-            case 'Democrat':   return {color: "#0000ff"};
+            case 'Republican': return { color: "#ff0000" };
+            case 'Democrat': return { color: "#0000ff" };
         }
     }
 }).addTo(map);
-
-
 
 var geojsonMarkerOptions = {
     radius: 8,
@@ -76,9 +72,9 @@ var geojsonMarkerOptions = {
     fillOpacity: 0.8
 };
 
-
 function onEachFeature(feature, layer) {
     if (feature.properties && feature.properties.popupContent) {
+        // methods described in quickstartTutorial.js
         layer.bindPopup(feature.properties.popupContent);
     }
 }
@@ -102,11 +98,11 @@ L.geoJSON(geojsonFeature, {
 
 L.geoJSON(geojsonFeature, {
     pointToLayer: function (feature, latlng) {
+        // circleMarker: creates a circle marker at the specified location with the specified parameters
         return L.circleMarker(latlng, geojsonMarkerOptions);
     }
 }).addTo(map);
 
-/*
 var someFeatures = [{
     "type": "Feature",
     "properties": {
@@ -128,10 +124,9 @@ var someFeatures = [{
         "coordinates": [-104.98404, 39.74621]
     }
 }];
-*/
 
 L.geoJSON(someFeatures, {
-    filter: function(feature, layer) {
+    filter: function (feature, layer) {
         return feature.properties.show_on_map;
     }
 }).addTo(map);
