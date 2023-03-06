@@ -51,7 +51,7 @@
     height: auto;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 6px;
-    line-height: 16px;
+    line-height: 20px;
     text-align: center;
     vertical-align: top;
     word-wrap: normal;
@@ -76,8 +76,22 @@
     line-height: 30px;
     text-align: center;
     border: solid gray 2px;
-    font-family: Times, Times New Roman, serif;
+    font-family: Times, serif;
     font-variant: small-caps;
     font-size:xx-large;
     z-index: 2;
+}
+
+.info {
+    width: 900px;
+    height: 60px;
+    position: absolute;
+    left: 450px;
+    top: 740px;
+    line-height: 20px;
+    text-align: left ;
+    font-family: Times, serif;
+    font-size:small;
+    color:grey;
+    z-index: 3;
 }

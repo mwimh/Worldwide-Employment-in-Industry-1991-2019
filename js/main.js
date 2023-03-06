@@ -36,7 +36,8 @@ function PopupContent(properties, attribute) {
 
 
 function createTitle() {
-    title.innerHTML = '<h1 class="title"><u>Percent of Workforce Employed in Industry (1991 - 2019)</u><br><font size="5">Top 20 <font color="#2FC9B9">Growing<font color="#000000"> and <font color="#D39631">Shrinking<font color="#000000"> Industrial Sectors Since 1991</h1>';
+    title.innerHTML = '<h1 class="title"><u>Global Shift of Industrial Employment (1991 - 2019)</u><br><font size="5">Top 20 <font color="#2FC9B9">Growing<font color="#000000"> and <font color="#D39631">Shrinking<font color="#000000"> Industrial Sectors Since 1991</h1>';
+    info.innerHTML = '<p class="info">Map Data from "The World Bank Group" © 2023</br>Map Created by Michael Imhoff for UW-Madison Geography</p>'
 };
 
 
@@ -232,7 +233,7 @@ function createLegend() {
                 var radius = calcPropRadius(dataStats[circles[i]]);
                 var cy = 105 - radius;
                 //circle string            
-                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '"cy="' + cy + '" fill="#D39631" fill-opacity="0.8" stroke="#000000" cx="65"/>';
+                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '"cy="' + cy + '" fill="#D3D3D3" fill-opacity="0.8" stroke="#000000" cx="65"/>';
                 //evenly space out labels            
                 var textY = i * 40 + 20;
                 //text string            
