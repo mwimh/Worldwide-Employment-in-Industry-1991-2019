@@ -1,39 +1,83 @@
-#map {
-    height: 800px;
-    width: 80%;
-    display: inline-block;
-}
-
-#panel {
-    width: 16%;
-    padding: 20px;
-    display: inline-block;
-    vertical-align: top;
-    text-align: center;
-    line-height: 42px;
-}
-
-.range-slider {  
-    width: 55%;  
-}  
-
-.step {  
-    width: 20%;  
-}  
-
-.step img {  
-    width: 100%;  
-} 
-
-#forward {  
-    float: right;  
-}
-
-#reverse {  
-    float: left;  
-}
-
 .leaflet-popup-content p {
     font-family: Helvetica;
     font-size: large;
 }
+
+#map {
+    height: 800px;
+    width: 100%;
+    display: inline-block;
+    z-index: 1;
+}
+
+.sequence-control-container {
+    width: 400px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding-top: 8px;
+    padding-bottom: 11px;
+    padding-right: 9px;
+    padding-left: 9px;
+    line-height: 45px;
+    text-align: center;
+    border: solid gray 1.5px;
+}
+
+.range-slider {
+    width: 300px;
+    margin-top: 8px;
+}
+
+.step {
+    width: 40px;
+}
+
+.step img {
+    width: auto;
+    height: 20px;
+    padding-top: 4px;
+}
+
+#forward {
+    float: right;
+}
+
+#reverse {
+    float: left;
+}
+
+.legend-control-container {
+    width: 220px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 6px;
+    line-height: 16px;
+    text-align: center;
+    vertical-align: top;
+    word-wrap: normal;
+    border: solid gray 1.5px;
+    font-family: Helvetica;
+    font-size: medium;
+}
+
+.year {
+    font-size: large;
+    font-weight: bold;
+}
+
+.title {
+    width: 900px;
+    height: 35px;
+    position: absolute;
+    left: 75px;
+    top: -5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    text-align: center;
+    border: solid gray 2px;
+    font-family: Times, Times New Roman, serif;
+    font-variant: small-caps;
+    font-size:xx-large;
+    z-index: 2;
+}
+
