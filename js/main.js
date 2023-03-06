@@ -5,7 +5,7 @@ var dataStats = {};
 // Create the basemap
 function createMap() {
     map = L.map('map', {
-        center: [20, 32],
+        center: [22, 40],
         zoom: 3
     });
 
@@ -36,7 +36,7 @@ function PopupContent(properties, attribute) {
 
 
 function createTitle() {
-    title.innerHTML = '<h1 class="title">Percent of Workforce Employed in Industry (1991 - 2019)</h1>';
+    title.innerHTML = '<h1 class="title"><u>Percent of Workforce Employed in Industry (1991 - 2019)</u><br><font size="5">Top 20 <font color="#2FC9B9">Growing<font color="#000000"> and <font color="#D39631">Shrinking<font color="#000000"> Industrial Sectors Since 1991</h1>';
 };
 
 
@@ -67,7 +67,7 @@ function calcPropRadius(attValue) {
     // Constant factor adjusts symbol sizes evenly
     var minRadius = 3; // default value 5
     // Flannery-ish Apperance Compensation formula (adjusted) default values: 1.0083, 0.5715
-    var radius = 1.0083 * Math.pow(attValue / dataStats.min, 0.5715) * minRadius
+    var radius = 1.0083 * Math.pow(attValue / dataStats.min, 0.52) * minRadius
     return radius;
 };
 
@@ -119,7 +119,7 @@ function pointToLayer(feature, latlng, attributes) {
 // Add circle markers for point features to the map
 function createPropSymbols(data, attributes) {
     //create a Leaflet GeoJSON layer and add it to the map
-    L.geoJson(data, {
+       L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
             return pointToLayer(feature, latlng, attributes);
         }
@@ -196,7 +196,6 @@ function updatePropSymbols(attribute) {
     var year = attribute.split("_")[1];
     //update temporal legend
     document.querySelector("span.year").innerHTML = year;
-
     map.eachLayer(function (layer) {
         if (layer.feature && layer.feature.properties[attribute]) {
             // Update each feature's radius based on new attribute values
@@ -205,7 +204,6 @@ function updatePropSymbols(attribute) {
             layer.setRadius(radius);
             // Add formatted attribute to panel content string
             var popupContent = new PopupContent(props, attribute);
-
             //update popup with new content    
             popup = layer.getPopup();
             popup.setContent(popupContent.formatted).update();
@@ -225,24 +223,25 @@ function createLegend() {
             var container = L.DomUtil.create('div', 'legend-control-container');
             container.innerHTML = '<p class="temporalLegend">Percent Employed<br>in Industry in <span class="year">2019</span></p>';
             //Step 1: start attribute legend svg string
-            var svg = '<svg id="attribute-legend" width="190px" height="130px">';
+            var svg = '<svg id="attribute-legend" width="190px" height="110px">';
             //array of circle names to base loop on  
             var circles = ["max", "mean", "min"];
             //Example 3.8 line 4...loop to add each circle and text to SVG string
             for (var i = 0; i < circles.length; i++) {
                 //Step 3: assign the r and cy attributes            
                 var radius = calcPropRadius(dataStats[circles[i]]);
-                var cy = 130 - radius;
+                var cy = 105 - radius;
                 //circle string            
                 svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '"cy="' + cy + '" fill="#D39631" fill-opacity="0.8" stroke="#000000" cx="65"/>';
                 //evenly space out labels            
-                var textY = i * 52 + 20;
+                var textY = i * 40 + 20;
                 //text string            
                 svg += '<text id="' + circles[i] + '-text" x="140" y="' + textY + '">' + Math.round(dataStats[circles[i]] * 10) / 10 + "%" + '</text>';
             };
             //close svg string
             svg += "</svg>";
-            //add attribute legend svg to container
+
+            //add attribute legend svg to container            
             container.insertAdjacentHTML('beforeend', svg);
             return container;
         }
@@ -270,18 +269,18 @@ function processData(data) {
 
 
 // Load and convert geojson data to be used
-function getData(map) {
+function getData() {
     // Load the data
     fetch("data/IndustEmp.geojson")
         .then(function (response) {
             return response.json();
         })
-        .then(function (json, response) {
+        .then(function (json) {
             // Calculate minimum data value
             var attributes = processData(json);
             // Call function to create proportional symbols
             calcStats(json);
-            createPropSymbols(json, attributes);
+            createPropSymbols(json, attributes);            
             // Call function to create controls
             createSequenceControls(attributes);
             createLegend(attributes);
