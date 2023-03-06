@@ -5,7 +5,7 @@ var dataStats = {};
 // Create the basemap
 function createMap() {
     map = L.map('map', {
-        center: [22, 40],
+        center: [22, 55],
         zoom: 3
     });
 
@@ -32,12 +32,14 @@ function PopupContent(properties, attribute) {
 };
 
 
-//Percent of Workforce Employed in Industry from 1991 - 2019
-
-
 function createTitle() {
     title.innerHTML = '<h1 class="title"><u>Global Shift of Industrial Employment (1991 - 2019)</u><br><font size="5">Top 20 <font color="#2FC9B9">Growing<font color="#000000"> and <font color="#D39631">Shrinking<font color="#000000"> Industrial Sectors Since 1991</h1>';
-    info.innerHTML = '<p class="info">Map Data from "The World Bank Group" © 2023</br>Map Created by Michael Imhoff for UW-Madison Geography</p>'
+    info.innerHTML = '<p class="info">Map Data from "The World Bank Group" © 2023</br>Supplemental information from Wikipedia: "Secondary sector of the economy"</br>Map Created by Michael Imhoff for UW-Madison Geography</p>'
+    story.innerHTML = '<p class="story"><img src="img/indPhoto1.jpg" alt="" width="150" align="left" hspace="20px">The industrial sector includes fields that produce a finished, usable product from raw materials or are involved in construction. Manufacturing is an\
+    important activity in promoting economic growth and development. Nations that export manufactured products tend to generate higher marginal GDP growth, that supports higher incomes and therefore tax revenue needed to fund government expenditures like health \
+    care and infrastructure.</br></br><img src="img/indPhoto3.jpg" alt="" height="100" align="right" hspace="20px" vspace="10px">This map shows the 20 countries with the most growth and most decline since 1991. A noticable shift in employment in the industrial \
+    sector from Western countries to South-East Asia shows the out-sourcing of industry that has occured in the last 30 years. Also of note is significant growth in Qatar and Oman, due primarily to the growth of their Oil Industries.</p>'
+    sliderTitle.innerHTML = '<h1 class="sliderTitle">Year Selection (1991 - 2019)</h1>'
 };
 
 
@@ -224,20 +226,20 @@ function createLegend() {
             var container = L.DomUtil.create('div', 'legend-control-container');
             container.innerHTML = '<p class="temporalLegend">Percent Employed<br>in Industry in <span class="year">2019</span></p>';
             //Step 1: start attribute legend svg string
-            var svg = '<svg id="attribute-legend" width="190px" height="110px">';
+            var svg = '<svg id="attribute-legend" width="190px" height="105px">';
             //array of circle names to base loop on  
             var circles = ["max", "mean", "min"];
             //Example 3.8 line 4...loop to add each circle and text to SVG string
             for (var i = 0; i < circles.length; i++) {
                 //Step 3: assign the r and cy attributes            
                 var radius = calcPropRadius(dataStats[circles[i]]);
-                var cy = 105 - radius;
+                var cy = 100 - radius;
                 //circle string            
                 svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '"cy="' + cy + '" fill="#D3D3D3" fill-opacity="0.8" stroke="#000000" cx="65"/>';
                 //evenly space out labels            
-                var textY = i * 40 + 20;
+                var textY = i * 42 + 12;
                 //text string            
-                svg += '<text id="' + circles[i] + '-text" x="140" y="' + textY + '">' + Math.round(dataStats[circles[i]] * 10) / 10 + "%" + '</text>';
+                svg += '<text id="' + circles[i] + '-text" x="135" y="' + textY + '">' + Math.round(dataStats[circles[i]] * 10) / 10 + "%" + '</text>';
             };
             //close svg string
             svg += "</svg>";
