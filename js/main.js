@@ -24,10 +24,10 @@ function createTitle() {
     // Display Metadata
     info.innerHTML = '<p class="info">Map Data from "The World Bank Group" © 2023</br>Supplemental information from Wikipedia: "Secondary sector of the economy"</br>Map Created by Michael Imhoff for UW-Madison Geography</p>'
     // Display additional information
-    story.innerHTML = '<p class="story"><img src="img/indPhoto1.jpg" alt="" width="150" align="left" hspace="20px">The industrial sector includes fields that produce a finished, usable product from raw materials or are involved in construction. Manufacturing is an\
+    story.innerHTML = '<p class="story"><img src="img/indPhoto1.jpg" alt="" width="150" align="left" hspace="20px">The industrial sector includes fields that produce a finished, usable product from raw materials. Manufacturing is an\
     important activity in promoting economic growth and development. Nations that export manufactured products tend to generate higher marginal GDP growth, that supports higher incomes and therefore tax revenue needed to fund government expenditures like health \
     care and infrastructure.</br></br><img src="img/indPhoto3.jpg" alt="" height="100" align="right" hspace="20px" vspace="10px">This map shows the 20 countries with the most growth and most decline since 1991. A noticable shift in employment in the industrial \
-    sector from Western countries to South-East Asia shows the out-sourcing of industry that has occured in the last 30 years. Also of note is significant growth in Qatar and Oman, due primarily to the growth of their Oil Industries.</p>'
+    sector from Europe and the Americas to South-East Asia shows the out-sourcing of industry that has occured in the last 30 years. Also of note is significant growth in Qatar and Oman, due primarily to the growth of their Oil Industries.</p>'
     // Display title over slider
     sliderTitle.innerHTML = '<h1 class="sliderTitle">Year Selection (1991 - 2019)</h1>'
 };
