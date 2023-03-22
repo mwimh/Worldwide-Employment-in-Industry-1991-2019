@@ -3,7 +3,7 @@
 ### **Author:** Michael Imhoff
 
 ### **Dependencies:**
-* [Leaflet 1.9]([https://leafletjs.com/])
+* [Leaflet 1.9](https://leafletjs.com/)
 
 ### **Code Version:**
 Last Updated: 8 March, 2023
